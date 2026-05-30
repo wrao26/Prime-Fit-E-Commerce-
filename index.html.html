@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="PrimeFit — Equipamento de performance para os que levam o treino a sério."/>
+  <title>PRIMEFIT</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet"/>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css"/>
+
+  <!-- Three.js + GSAP (loaded before script.js) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+
+  <!-- App script (defer = runs after DOM parsed, after above scripts) -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+<!-- ── Custom cursor ── -->
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="n-logo">
+    <span class="n-logo-prime">PRIME</span><span class="n-logo-fit">FIT</span>
+  </div>
+  <div class="n-links">
+    <a href="#">Equipamento</a>
+    <a href="#">Recuperação</a>
+    <a href="#">Mobilidade</a>
+    <a href="#">Acessórios</a>
+    <a href="#">Sobre</a>
+  </div>
+  <div class="n-right">
+    <div class="n-cart" role="button" aria-label="Abrir carrinho" tabindex="0">
+      <svg viewBox="0 0 24 24">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+      <div class="n-cart-badge" style="display:none;">0</div>
+    </div>
+    <div class="n-burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="h-left">
+    <p class="h-drop"><em>// </em></p>
+    <div class="h-title1">Engenharia para o</div>
+    <div class="h-title2">movimento.</div>
+    <p class="h-sub">Equipamento de performance para os que levam o treino a sério. Materiais certificados, tecnologia de ponta, resultados reais.</p>
+    <div class="h-btns">
+      <a href="#destaque" class="btn-g">
+        Comprar Agora
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+      <button class="btn-gh">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="5 3 19 12 5 21 5 3"/>
+        </svg>
+        Ver o Filme
+      </button>
+    </div>
+  </div>
+  <div class="h-right">
+    <div class="h-prod">
+      <canvas id="db-canvas" style="width:100%;height:100%;display:block;border-radius:12px;"></canvas>
+      <div class="h-wt" style="bottom:18px;right:10px;top:auto;z-index:10;">Aprx · 2.5kg</div>
+      <div class="h-tag" style="bottom:42px;left:10px;right:auto;z-index:10;"><b>PRO IRON</b> v3</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MARQUEE ══ -->
+<div class="mq">
+  <div class="mq-track">
+    <div class="mq-item"><span class="mq-dot">•</span> Envio Gratuito acima de €50 <span class="mq-dot">•</span> Materiais Premium <span class="mq-dot">•</span> Equipamento Certificado <span class="mq-dot">•</span> Qualidade Garantida <span class="mq-dot">•</span></div>
+    <div class="mq-item"><span class="mq-dot">•</span> Envio Gratuito acima de €50 <span class="mq-dot">•</span> Materiais Premium <span class="mq-dot">•</span> Equipamento Certificado <span class="mq-dot">•</span> Qualidade Garantida <span class="mq-dot">•</span> Colecção 04</div>
+    <div class="mq-item"><span class="mq-dot">•</span> Envio Gratuito acima de €50 <span class="mq-dot">•</span> Materiais Premium <span class="mq-dot">•</span> Equipamento Certificado <span class="mq-dot">•</span> Qualidade Garantida <span class="mq-dot">•</span> Colecção 04</div>
+    <div class="mq-item"><span class="mq-dot">•</span> Envio Gratuito acima de €50 <span class="mq-dot">•</span> Materiais Premium <span class="mq-dot">•</span> Equipamento Certificado <span class="mq-dot">•</span> Qualidade Garantida <span class="mq-dot">•</span> Colecção 04</div>
+  </div>
+</div>
+
+<!-- ══ 01 — CATEGORIAS ══ -->
+<section class="cat-sec rv">
+  <div class="cat-hd">
+    <div class="cat-hd-line1">Cada desporto.</div>
+    <div class="cat-hd-line2">Cada objectivo.</div>
+    <p class="cat-hd-desc">Selecções curadas para treino em casa, recuperação muscular, mobilidade e acessórios essenciais. Tudo construído para durar.</p>
+  </div>
+
+  <div class="cat-grid-wrap">
+    <!-- Treino & Força -->
+    <div class="img-card" style="min-height:320px;">
+      <div class="ic-bg ph-treino"></div>
+      <div class="ic-overlay"></div>
+      <div class="ic-body">
+        <div class="ic-text">
+          <div class="ic-sub">Halteres, faixas, bolas e máquinas para casa</div>
+          <div class="ic-title">Treino &amp; Força</div>
+        </div>
+        <div class="ic-arrow">
+          <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recuperação -->
+    <div class="img-card" style="min-height:320px;">
+      <div class="ic-bg ph-recup"></div>
+      <div class="ic-overlay"></div>
+      <div class="ic-body">
+        <div class="ic-text">
+          <div class="ic-sub">Crioterapia, sauna e massagem muscular</div>
+          <div class="ic-title">Recuperação</div>
+        </div>
+        <div class="ic-arrow">
+          <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2-col row -->
+    <div class="cat-row-2">
+      <!-- Mobilidade -->
+      <div class="img-card" style="min-height:280px;">
+        <div class="ic-bg ph-mobil"></div>
+        <div class="ic-overlay"></div>
+        <div class="ic-body">
+          <div class="ic-text">
+            <div class="ic-sub">Postura, agilidade e flexibilidade</div>
+            <div class="ic-title">Mobilidade</div>
+          </div>
+          <div class="ic-arrow">
+            <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </div>
+        </div>
+      </div>
+      <!-- Acessórios -->
+      <div class="img-card" style="min-height:280px;">
+        <div class="ic-bg ph-acess"></div>
+        <div class="ic-overlay"></div>
+        <div class="ic-body">
+          <div class="ic-text">
+            <div class="ic-sub">Garrafas, suportes e gadgets de treino</div>
+            <div class="ic-title">Acessórios</div>
+          </div>
+          <div class="ic-arrow">
+            <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 02 — PRODUTOS EM DESTAQUE (dynamic via Shopify) ══ -->
+<section class="feat-sec rv" id="destaque">
+  <div class="feat-hd">
+    <div>
+      <div class="feat-title">Em Destaque. <em>Agora.</em></div>
+    </div>
+  </div>
+
+  <!-- Pill filters -->
+  <div class="pill-wrap">
+    <button class="pill on" data-filter="tudo">Tudo</button>
+    <button class="pill" data-filter="treino">Treino</button>
+    <button class="pill" data-filter="recuperacao">Recuperação</button>
+    <button class="pill" data-filter="mobilidade">Mobilidade</button>
+    <button class="pill" data-filter="acessorios">Acessórios</button>
+  </div>
+
+  <!-- Dynamic product grid — populated by script.js -->
+  <div id="pf-products-wrap">
+    <!-- Skeleton shown until Shopify responds -->
+    <div class="feat-grid" id="pf-skeleton-grid">
+      <div class="img-card pf-skel" style="min-height:260px;"><div class="pf-skel-shine"></div></div>
+      <div class="img-card pf-skel" style="min-height:260px;"><div class="pf-skel-shine"></div></div>
+      <div class="img-card pf-skel" style="min-height:260px;"><div class="pf-skel-shine"></div></div>
+    </div>
+  </div>
+
+  <!-- Ver Mais button (shown/hidden dynamically) -->
+  <div style="text-align:center;margin-top:2rem;" id="pf-ver-mais-wrap" style="display:none;">
+    <button class="btn-ver-mais" id="btn-ver-mais">
+      Ver Mais
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"/>
+        <line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Hidden legacy grid (kept for CSS compat) -->
+  <div class="feat-grid" id="feat-grid" style="display:none;"></div>
+</section>
+
+<!-- ══ 03 — PROMOÇÃO ══ -->
+<section class="feat-sec rv">
+  <div class="feat-grid" style="grid-template-columns:1fr 1fr 1fr;">
+    <div class="promo-tile" style="grid-column:span 1;">
+      <div class="promo-num">−30%</div>
+      <div class="promo-label">Em Recuperação</div>
+      <a href="#" class="btn-dark">
+        Ver Promoção
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+    <div class="img-card" style="min-height:260px;grid-column:span 2;">
+      <div class="ic-bg ph-recup"></div>
+      <div class="ic-overlay"></div>
+      <div class="ic-body">
+        <div class="ic-text">
+          <div class="ic-sub">Colecção Limitada</div>
+          <div class="ic-title ic-title-sm">Kit Recuperação Pro</div>
+        </div>
+        <div class="ic-arrow">
+          <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 04 — PERFORMANCE ══ -->
+<section class="perf-wrap rv">
+  <div class="perf">
+    <div class="perf-inner">
+      <div class="perf-h1">Sem desculpas.</div>
+      <div class="perf-h1i">Apenas execução.</div>
+      <p class="perf-desc">Equipamento construído para quem treina com propósito. Sem compromissos, sem atalhos.</p>
+      <button class="btn-g">
+        Explorar Colecção
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MANIFESTO ══ -->
+<section class="mani rv">
+  <div>
+    <div class="mani-eyebrow"><em>// </em>MANIFESTO</div>
+    <h2 class="mani-h2">Construído com propósito.<br/>Engenharia para o mundo.</h2>
+    <p class="mani-desc">A PrimeFit nasceu para servir uma nova geração de pessoas activas. Somos rigorosos, certificados e apaixonados pela qualidade — em parceria com os melhores fabricantes internacionais.</p>
+    <div class="mani-stats">
+      <div>
+        <div class="ms-num">100%</div>
+        <div class="ms-lbl">Satisfação<br/>garantida</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NEWSLETTER ══ -->
+<section class="nl rv">
+  <div class="nl-eyebrow"><em>// </em>NEWSLETTER</div>
+  <h2 class="nl-h2">Acesso antecipado<br/>às novas colecções.</h2>
+  <p class="nl-desc">Receba lançamentos exclusivos antes do público. Seja o primeiro a saber.</p>
+  <div class="nl-form">
+    <input class="nl-inp" type="email" placeholder="o.seu.email@exemplo.pt" aria-label="Endereço de email"/>
+    <button class="nl-sub" aria-label="Subscrever newsletter">
+      <svg viewBox="0 0 24 24">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </button>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="ft">
+    <div>
+      <div class="fb-logo">
+        <span class="fb-logo-p">PRIME</span><span class="fb-logo-f">FIT</span>
+      </div>
+      <p class="fb-desc">Equipamento de performance para quem leva o desporto a sério. Qualidade certificada, preços acessíveis.</p>
+      <div class="socials">
+        <a href="#" class="sc" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#" class="sc" aria-label="Twitter / X">
+          <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+        </a>
+        <a href="#" class="sc" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.4 19.54C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="fc-title">Loja</div>
+      <div class="fc-links">
+        <a href="#">Treino &amp; Força</a>
+        <a href="#">Recuperação</a>
+        <a href="#">Mobilidade &amp; Postura</a>
+        <a href="#">Acessórios</a>
+        <a href="#">Ver Tudo</a>
+      </div>
+    </div>
+    <div>
+      <div class="fc-title">Apoio</div>
+      <div class="fc-links">
+        <a href="#">Envios</a>
+        <a href="#">Trocas e Devoluções</a>
+        <a href="#">Guia de Tamanhos</a>
+        <a href="#">Perguntas Frequentes</a>
+      </div>
+    </div>
+    <div>
+      <div class="fc-title">Marca</div>
+      <div class="fc-links">
+        <a href="#">Sobre Nós</a>
+        <a href="#">Imprensa</a>
+        <a href="#">Parcerias</a>
+        <a href="#">Carreiras</a>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <span class="ft-copy">© 2025 PrimeFit. Todos os direitos reservados.</span>
+    <div class="ft-legal">
+      <a href="#">Privacidade</a>
+      <a href="#">Termos</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+  <div class="ft-giant">
+    <span class="ft-giant-txt">PRIMEFIT</span>
+  </div>
+</footer>
+
+</body>
+</html>
