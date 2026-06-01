@@ -6,7 +6,7 @@
 
 const PRIMEFIT_CONFIG = {
   shopDomain:     'xd3jdf-dc.myshopify.com',
-  storefrontToken: 'YOUR_STOREFRONT_TOKEN_HERE',   // ← insert token
+  storefrontToken: 'b038ef2aeeaac3573987069d95c0c119',   // ← insert token
   apiVersion:     '2025-01',
 
   get apiUrl() {
