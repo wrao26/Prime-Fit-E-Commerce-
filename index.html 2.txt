@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PRIMEFIT — Engenharia para o Movimento</title>
+<meta name="description" content="Equipamento de performance para os que levam o treino a sério. Materiais certificados, tecnologia de ponta, resultados reais."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+<!-- Three.js + GSAP (hero 3D model) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- ══════════════════════════════════
+     NAV
+══════════════════════════════════ -->
+<nav>
+  <div class="n-logo">
+    <span class="n-logo-prime">PRIME</span><span class="n-logo-fit">FIT</span>
+  </div>
+  <div class="n-links">
+    <a href="#categorias">Equipamento</a>
+    <a href="#categorias">Recuperação</a>
+    <a href="#categorias">Mobilidade</a>
+    <a href="#categorias">Acessórios</a>
+    <a href="#manifesto">Sobre</a>
+  </div>
+  <div class="n-right">
+    <div class="n-cart" role="button" aria-label="Abrir carrinho" tabindex="0">
+      <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <div class="n-cart-badge" style="display:none;">0</div>
+    </div>
+    <div class="n-burger" role="button" aria-label="Menu" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
+<section class="hero">
+  <div class="h-left">
+    <p class="h-drop"><em>// </em>Performance Equipment</p>
+    <div class="h-title1">Engenharia para o</div>
+    <div class="h-title2">movimento.</div>
+    <p class="h-sub">Equipamento de performance para os que levam o treino a sério. Materiais certificados, tecnologia de ponta, resultados reais.</p>
+    <div class="h-btns">
+      <a href="#destaque" class="btn-g">Comprar Agora
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <button class="btn-gh">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Ver o Filme
+      </button>
+    </div>
+  </div>
+  <div class="h-right">
+    <div class="h-prod">
+      <canvas id="db-canvas" style="width:100%;height:100%;display:block;border-radius:12px;"></canvas>
+      <div class="h-wt" style="bottom:18px;right:10px;top:auto;z-index:10;">Aprx · 2.5kg</div>
+      <div class="h-tag" style="bottom:42px;left:10px;right:auto;z-index:10;"><b>PRO IRON</b> v3</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     MARQUEE
+══════════════════════════════════ -->
+<div class="mq">
+  <div class="mq-track">
+    <div class="mq-item"><span class="mq-dot">•</span> Envio Gratuito acima de €50 <span class="mq-dot">•</span> Materiais Premium <span class="mq-dot">•</span> Equipamento Certificado <span class="mq-dot">•</span> Qualidade Garantida <span class="mq-dot">•</span></div>
+    <div class="mq-item"><span class="mq-dot">•</span> Envio Gratuito acima de €50 <span class="mq-dot">•</span> Materiais Premium <span class="mq-dot">•</span> Equipamento Certificado <span class="mq-dot">•</span> Qualidade Garantida <span class="mq-dot">•</span> Colecção 04</div>
+    <div class="mq-item"><span class="mq-dot">•</span> Envio Gratuito acima de €50 <span class="mq-dot">•</span> Materiais Premium <span class="mq-dot">•</span> Equipamento Certificado <span class="mq-dot">•</span> Qualidade Garantida <span class="mq-dot">•</span> Colecção 04</div>
+    <div class="mq-item"><span class="mq-dot">•</span> Envio Gratuito acima de €50 <span class="mq-dot">•</span> Materiais Premium <span class="mq-dot">•</span> Equipamento Certificado <span class="mq-dot">•</span> Qualidade Garantida <span class="mq-dot">•</span> Colecção 04</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     01 — CATEGORIAS
+══════════════════════════════════ -->
+<section class="cat-sec rv" id="categorias">
+  <div class="cat-hd">
+    <div class="cat-hd-line1">Cada desporto.</div>
+    <div class="cat-hd-line2">Cada objectivo.</div>
+    <p class="cat-hd-desc">Selecções curadas para treino em casa, recuperação muscular, mobilidade e acessórios essenciais. Tudo construído para durar.</p>
+  </div>
+
+  <div class="cat-grid-wrap">
+    <div class="img-card" style="min-height:320px;">
+      <div class="ic-bg ph-treino"></div>
+      <div class="ic-overlay"></div>
+      <div class="ic-body">
+        <div class="ic-text">
+          <div class="ic-sub">Halteres, faixas, bolas e máquinas para casa</div>
+          <div class="ic-title">Treino &amp; Força</div>
+        </div>
+        <div class="ic-arrow">
+          <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="img-card" style="min-height:320px;">
+      <div class="ic-bg ph-recup"></div>
+      <div class="ic-overlay"></div>
+      <div class="ic-body">
+        <div class="ic-text">
+          <div class="ic-sub">Pistolas de massagem, banhos de gelo e mantas de sauna</div>
+          <div class="ic-title">Recuperação</div>
+        </div>
+        <div class="ic-arrow">
+          <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="cat-row-2">
+      <div class="img-card" style="min-height:250px;">
+        <div class="ic-bg ph-mobil"></div>
+        <div class="ic-overlay"></div>
+        <div class="ic-body">
+          <div class="ic-text">
+            <div class="ic-sub">Cordas, escadas e cintas posturais</div>
+            <div class="ic-title" style="font-size:1.15rem;">Mobilidade &amp; Postura</div>
+          </div>
+          <div class="ic-arrow" style="width:40px;height:40px;">
+            <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="img-card" style="min-height:250px;">
+        <div class="ic-bg ph-acess"></div>
+        <div class="ic-overlay"></div>
+        <div class="ic-body">
+          <div class="ic-text">
+            <div class="ic-sub">Suportes, garrafas e organizadores</div>
+            <div class="ic-title" style="font-size:1.15rem;">Acessórios</div>
+          </div>
+          <div class="ic-arrow" style="width:40px;height:40px;">
+            <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     02 — COLECÇÕES (carousel from Shopify)
+══════════════════════════════════ -->
+<section class="rv" id="collections-section" style="padding:4rem 0 2rem;">
+  <div style="padding:0 1.6rem;margin-bottom:1.8rem;display:flex;align-items:baseline;justify-content:space-between;">
+    <div>
+      <div style="font-size:.7rem;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem;">
+        02 — COLECÇÕES
+      </div>
+      <div style="font-family:'Barlow',sans-serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:800;line-height:1;letter-spacing:-1px;">
+        Navega por<br/>colecção.
+      </div>
+    </div>
+  </div>
+
+  <!-- Scrollable track — populated by script.js -->
+  <div id="coll-track" style="
+    display:flex;
+    gap:var(--gap);
+    overflow-x:auto;
+    padding:0 1.6rem 1.2rem;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+    cursor:grab;
+    user-select:none;
+  "></div>
+</section>
+
+<!-- ══════════════════════════════════
+     03 — SELECÇÃO EM DESTAQUE
+══════════════════════════════════ -->
+<section class="feat-sec rv" id="destaque">
+  <div class="feat-hd">
+    <div class="feat-label">
+      <span class="feat-label-num">03</span>
+      <span class="feat-label-sep">—</span>
+      <span class="feat-label-txt">EM DESTAQUE</span>
+    </div>
+    <div class="feat-title">Selecção em<br/>destaque.</div>
+    <div class="feat-filters">
+      <button class="pill on" data-filter="tudo">Tudo</button>
+      <button class="pill" data-filter="recuperacao">Recuperação</button>
+      <button class="pill" data-filter="treino">Treino</button>
+      <button class="pill" data-filter="mobilidade">Mobilidade</button>
+      <button class="pill" data-filter="acessorios">Acessórios</button>
+    </div>
+  </div>
+
+  <!-- Products grid — populated by script.js (Shopify) -->
+  <!-- Falls back to static HTML cards below if API is unavailable -->
+  <div class="feat-grid" id="feat-grid">
+    <!-- Shopify products load here. Static fallbacks shown if API fails. -->
+    <!-- Static fallback cards (shown only when JS hasn't replaced them) -->
+    <div class="img-card" style="min-height:260px;" data-cat="treino">
+      <div class="ic-bg ph-p-dumb"></div>
+      <div class="ic-overlay"></div>
+      <div class="ic-body">
+        <div class="ic-text">
+          <div class="ic-sub">Musculação</div>
+          <div class="ic-title ic-title-sm">Halteres Ajustáveis</div>
+          <div class="ic-price">€25 – €50</div>
+        </div>
+        <button class="ic-add"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+      </div>
+    </div>
+    <div class="img-card" style="min-height:260px;" data-cat="treino">
+      <div class="ic-bg ph-p-6in1"></div>
+      <div class="ic-overlay"></div>
+      <div class="ic-body">
+        <div class="ic-text">
+          <div class="ic-sub">Ginásio Completo</div>
+          <div class="ic-title ic-title-sm">Equipamento 6 em 1</div>
+          <div class="ic-price">€40 – €80</div>
+        </div>
+        <button class="ic-add"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+      </div>
+    </div>
+    <div class="promo-tile">
+      <div class="promo-num">–20%</div>
+      <div class="promo-label">Novos Clientes</div>
+      <a href="#destaque" class="btn-dark">Ver Oferta
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+    <div class="img-card" style="min-height:260px;" data-cat="recuperacao">
+      <div class="ic-bg ph-p-ice"></div>
+      <div class="ic-overlay"></div>
+      <div class="ic-body">
+        <div class="ic-text">
+          <div class="ic-sub">Crioterapia</div>
+          <div class="ic-title ic-title-sm">Banheira de Gelo Dobrável</div>
+          <div class="ic-price">€20 – €35</div>
+        </div>
+        <button class="ic-add"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+      </div>
+    </div>
+    <div class="img-card" style="min-height:260px;" data-cat="recuperacao">
+      <div class="ic-bg ph-p-sauna"></div>
+      <div class="ic-overlay"></div>
+      <div class="ic-body">
+        <div class="ic-text">
+          <div class="ic-sub">Sauna</div>
+          <div class="ic-title ic-title-sm">Cobertor Sauna Infravermelhos</div>
+          <div class="ic-price">€45 – €70</div>
+        </div>
+        <button class="ic-add"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+      </div>
+    </div>
+    <div class="img-card" style="min-height:260px;" data-cat="mobilidade">
+      <div class="ic-bg ph-p-bands"></div>
+      <div class="ic-overlay"></div>
+      <div class="ic-body">
+        <div class="ic-text">
+          <div class="ic-sub">Resistência</div>
+          <div class="ic-title ic-title-sm">Kit Bandas Elásticas 11 Peças</div>
+          <div class="ic-price">€4 – €8</div>
+        </div>
+        <button class="ic-add"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Extra products (Ver Mais) -->
+  <div class="feat-grid feat-grid-extra" id="feat-grid-extra" style="display:none;margin-top:var(--gap);">
+    <div class="img-card" style="min-height:260px;" data-cat="treino">
+      <div class="ic-bg ph-p-tread"></div>
+      <div class="ic-overlay"></div>
+      <div class="ic-body">
+        <div class="ic-text">
+          <div class="ic-sub">Cardio</div>
+          <div class="ic-title ic-title-sm">Mini Passadeira para Casa</div>
+          <div class="ic-price">€70 – €120</div>
+        </div>
+        <button class="ic-add"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+      </div>
+    </div>
+    <div class="img-card" style="min-height:260px;" data-cat="recuperacao">
+      <div class="ic-bg ph-p-massage"></div>
+      <div class="ic-overlay"></div>
+      <div class="ic-body">
+        <div class="ic-text">
+          <div class="ic-sub">Massagem</div>
+          <div class="ic-title ic-title-sm">Pistola de Massagem Percussão</div>
+          <div class="ic-price">€12 – €25</div>
+        </div>
+        <button class="ic-add"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+      </div>
+    </div>
+    <div class="img-card" style="min-height:260px;" data-cat="mobilidade">
+      <div class="ic-bg ph-p-rope"></div>
+      <div class="ic-overlay"></div>
+      <div class="ic-body">
+        <div class="ic-text">
+          <div class="ic-sub">Cardio</div>
+          <div class="ic-title ic-title-sm">Corda de Saltar Inteligente</div>
+          <div class="ic-price">€3 – €7</div>
+        </div>
+        <button class="ic-add"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+      </div>
+    </div>
+    <div class="img-card" style="min-height:260px;" data-cat="mobilidade">
+      <div class="ic-bg ph-p-ladder"></div>
+      <div class="ic-overlay"></div>
+      <div class="ic-body">
+        <div class="ic-text">
+          <div class="ic-sub">Agilidade</div>
+          <div class="ic-title ic-title-sm">Escada de Agilidade</div>
+          <div class="ic-price">€3 – €6</div>
+        </div>
+        <button class="ic-add"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+      </div>
+    </div>
+    <div class="img-card" style="min-height:260px;" data-cat="acessorios">
+      <div class="ic-bg ph-p-blender"></div>
+      <div class="ic-overlay"></div>
+      <div class="ic-body">
+        <div class="ic-text">
+          <div class="ic-sub">Nutrição</div>
+          <div class="ic-title ic-title-sm">Liquidificador Eléctrico Portátil</div>
+          <div class="ic-price">€6 – €12</div>
+        </div>
+        <button class="ic-add"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+      </div>
+    </div>
+    <div class="img-card" style="min-height:260px;" data-cat="acessorios">
+      <div class="ic-bg ph-p-bottle"></div>
+      <div class="ic-overlay"></div>
+      <div class="ic-body">
+        <div class="ic-text">
+          <div class="ic-sub">Hidratação</div>
+          <div class="ic-title ic-title-sm">Suporte Magnético para Garrafa</div>
+          <div class="ic-price">€2 – €4</div>
+        </div>
+        <button class="ic-add"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:2rem;">
+    <button class="btn-ver-mais" id="btn-ver-mais">Ver Mais
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     04 — PERFORMANCE BANNER
+══════════════════════════════════ -->
+<section class="perf-wrap rv">
+  <div class="perf">
+    <div class="perf-inner">
+      <div class="perf-h1">Treina mais</div>
+      <div class="perf-h1i">forte.</div>
+      <p class="perf-desc">Cada produto é seleccionado para maximizar a tua performance. Sem atalhos. Só resultados.</p>
+      <a href="#destaque" class="btn-g">Ver Colecção
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     05 — MANIFESTO
+══════════════════════════════════ -->
+<section class="mani rv" id="manifesto">
+  <div class="mani-eyebrow"><em>05</em> — Sobre nós</div>
+  <h2 class="mani-h2">Construímos para os<br/>que não param.</h2>
+  <p class="mani-desc">A PRIMEFIT nasceu da convicção de que equipamento de qualidade não devia ser exclusivo de ginásios profissionais. Seleccionamos, testamos e entregamos o melhor — directamente para a tua casa.</p>
+  <div class="mani-stats">
+    <div>
+      <div class="ms-num">12k+</div>
+      <div class="ms-lbl">Clientes<br/>satisfeitos</div>
+    </div>
+    <div>
+      <div class="ms-num">98%</div>
+      <div class="ms-lbl">Taxa de<br/>satisfação</div>
+    </div>
+    <div>
+      <div class="ms-num">4.9★</div>
+      <div class="ms-lbl">Avaliação<br/>média</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     NEWSLETTER
+══════════════════════════════════ -->
+<section class="nl rv">
+  <div class="nl-eyebrow"><em>✦</em> Newsletter</div>
+  <h2 class="nl-h2">Fica na vanguarda.</h2>
+  <p class="nl-desc">Lançamentos em exclusivo, ofertas e conteúdo de treino. Sem spam.</p>
+  <div class="nl-form">
+    <input class="nl-inp" type="email" placeholder="O teu email" autocomplete="email"/>
+    <button class="nl-sub" aria-label="Subscrever">
+      <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     FOOTER
+══════════════════════════════════ -->
+<footer>
+  <div class="ft">
+    <div>
+      <div class="fb-logo"><span class="fb-logo-p">PRIME</span><span class="fb-logo-f">FIT</span></div>
+      <p class="fb-desc">Equipamento de performance para atletas e entusiastas do fitness. Qualidade certificada, entrega rápida.</p>
+      <div class="socials">
+        <a href="#" class="sc" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#" class="sc" aria-label="TikTok">
+          <svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+        </a>
+        <a href="#" class="sc" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <div class="fc-title">Loja</div>
+      <div class="fc-links">
+        <a href="#categorias">Treino &amp; Força</a>
+        <a href="#categorias">Recuperação</a>
+        <a href="#categorias">Mobilidade</a>
+        <a href="#categorias">Acessórios</a>
+        <a href="#destaque">Novidades</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="fc-title">Apoio</div>
+      <div class="fc-links">
+        <a href="#">FAQ</a>
+        <a href="#">Envios &amp; Devoluções</a>
+        <a href="#">Contacto</a>
+        <a href="#">Garantia</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="fc-title">Empresa</div>
+      <div class="fc-links">
+        <a href="#manifesto">Sobre nós</a>
+        <a href="#">Blog</a>
+        <a href="#">Afiliados</a>
+        <a href="#">Imprensa</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="ft-bot">
+    <div class="ft-copy">© 2025 PRIMEFIT. Todos os direitos reservados.</div>
+    <div class="ft-legal">
+      <a href="#">Privacidade</a>
+      <a href="#">Termos</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+
+  <div class="ft-giant">
+    <span class="ft-giant-txt">PRIMEFIT</span>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════
+     SCRIPTS (order matters)
+══════════════════════════════════ -->
+<script src="config.js"></script>
+<script src="shopify.js"></script>
+<script src="script.js"></script>
+
+<!-- Three.js hero dumbbell (self-contained, runs after DOM+THREE loaded) -->
+<script>
+(function initHero3D() {
+  // Wait for THREE to be available (loaded with defer)
+  function tryInit() {
+    if (typeof THREE === 'undefined' || typeof gsap === 'undefined') {
+      setTimeout(tryInit, 80);
+      return;
+    }
+
+    const canvas = document.getElementById('db-canvas');
+    if (!canvas) return;
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.setClearColor(0x000000, 0);
+
+    const scene  = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 50);
+    camera.position.set(0, 0.4, 7);
+
+    const dbGroup = new THREE.Group();
+    scene.add(dbGroup);
+
+    const matBar      = new THREE.MeshStandardMaterial({ color: 0x1a1a1a, metalness: 0.95, roughness: 0.18 });
+    const matPlateInner = new THREE.MeshStandardMaterial({ color: 0x111111, metalness: 0.9,  roughness: 0.22 });
+    const matPlateOuter = new THREE.MeshStandardMaterial({ color: 0x0d0d0d, metalness: 0.95, roughness: 0.15 });
+    const matCollar   = new THREE.MeshStandardMaterial({ color: 0xc87a20, metalness: 0.88, roughness: 0.25 });
+    const matKnurl    = new THREE.MeshStandardMaterial({ color: 0x222222, metalness: 0.8,  roughness: 0.55 });
+
+    function cyl(rT, rB, h, mat, x=0, y=0, z=0, rotZ=0) {
+      const geo  = new THREE.CylinderGeometry(rT, rB, h, 32);
+      const mesh = new THREE.Mesh(geo, mat);
+      mesh.position.set(x, y, z);
+      mesh.rotation.z = rotZ;
+      mesh.castShadow = true;
+      dbGroup.add(mesh);
+      return mesh;
+    }
+
+    function plate(x, r, halfThick, r2, mat) {
+      const geo  = new THREE.CylinderGeometry(r, r, halfThick * 2, 48);
+      const mesh = new THREE.Mesh(geo, mat);
+      mesh.position.set(x, 0, 0);
+      mesh.rotation.z = Math.PI / 2;
+      mesh.castShadow = true;
+      dbGroup.add(mesh);
+    }
+
+    // Bar
+    cyl(0.09, 0.09, 4.8, matBar, 0, 0, 0, Math.PI/2);
+    // Knurl zones
+    cyl(0.095, 0.095, 0.9, matKnurl, -0.55, 0, 0, Math.PI/2);
+    cyl(0.095, 0.095, 0.9, matKnurl,  0.55, 0, 0, Math.PI/2);
+    // Collars (gold)
+    cyl(0.115, 0.115, 0.18, matCollar, -1.28, 0, 0, Math.PI/2);
+    cyl(0.115, 0.115, 0.18, matCollar,  1.28, 0, 0, Math.PI/2);
+    // Thin inner plates
+    plate(-1.72, 0.38, 0.10, 0.22, matPlateInner);
+    plate( 1.50, 0.38, 0.10, 0.22, matPlateInner);
+    // Main outer plates
+    plate(-2.10, 0.62, 0.095, 0.34, matPlateOuter);
+    plate( 1.76, 0.62, 0.095, 0.34, matPlateOuter);
+    // End caps
+    cyl(0.095, 0.095, 0.18, matCollar, -2.62, 0, 0, Math.PI/2);
+    cyl(0.095, 0.095, 0.18, matCollar,  2.62, 0, 0, Math.PI/2);
+    cyl(0.18,  0.18,  0.06, matCollar, -2.72, 0, 0, Math.PI/2);
+    cyl(0.18,  0.18,  0.06, matCollar,  2.72, 0, 0, Math.PI/2);
+
+    // Shadow plane
+    const shadowPlane = new THREE.Mesh(
+      new THREE.PlaneGeometry(6, 3),
+      new THREE.ShadowMaterial({ opacity: 0.55 })
+    );
+    shadowPlane.rotation.x = -Math.PI / 2;
+    shadowPlane.position.y = -1.05;
+    shadowPlane.receiveShadow = true;
+    scene.add(shadowPlane);
+
+    // Lights
+    const keyLight = new THREE.SpotLight(0xffffff, 3.5);
+    keyLight.position.set(4, 5, 4);
+    keyLight.angle = Math.PI / 7;
+    keyLight.penumbra = 0.65;
+    keyLight.decay = 1.8;
+    keyLight.castShadow = true;
+    keyLight.shadow.mapSize.width = keyLight.shadow.mapSize.height = 1024;
+    scene.add(keyLight);
+    scene.add(keyLight.target);
+
+    const fillLight = new THREE.DirectionalLight(0x8ab4f8, 0.45);
+    fillLight.position.set(-5, 2, 1);
+    scene.add(fillLight);
+
+    const rimLight = new THREE.SpotLight(0xffffff, 1.8);
+    rimLight.position.set(-2, 3, -5);
+    rimLight.angle = Math.PI / 6;
+    rimLight.penumbra = 0.8;
+    rimLight.decay = 2.0;
+    scene.add(rimLight);
+
+    scene.add(new THREE.AmbientLight(0x111111, 0.5));
+    const groundGlow = new THREE.PointLight(0xc87a20, 0.35, 6);
+    groundGlow.position.set(0, -1.5, 1.5);
+    scene.add(groundGlow);
+
+    // Particles
+    const PARTICLE_COUNT = 80;
+    const pPositions = new Float32Array(PARTICLE_COUNT * 3);
+    const pSizes     = new Float32Array(PARTICLE_COUNT);
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      pPositions[i*3]   = (Math.random()-.5)*10;
+      pPositions[i*3+1] = (Math.random()-.5)*8;
+      pPositions[i*3+2] = (Math.random()-.5)*6 - 1;
+      pSizes[i] = Math.random()*2.5 + 0.8;
+    }
+    const pGeo = new THREE.BufferGeometry();
+    pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
+    pGeo.setAttribute('size',     new THREE.BufferAttribute(pSizes, 1));
+    const particles = new THREE.Points(pGeo, new THREE.PointsMaterial({
+      color: 0xffffff, size: 0.028, transparent: true, opacity: 0.18,
+      sizeAttenuation: true, depthWrite: false,
+    }));
+    scene.add(particles);
+
+    // Mouse influence
+    let targetRotX = 0, targetRotY = 0, currentRotX = 0, currentRotY = 0;
+    document.addEventListener('mousemove', e => {
+      const rect = canvas.getBoundingClientRect();
+      targetRotX = ((e.clientY - rect.top  - rect.height/2) / (rect.height/2)) * 0.22;
+      targetRotY = ((e.clientX - rect.left - rect.width/2)  / (rect.width/2))  * 0.18;
+    });
+
+    // GSAP auto-spin + float
+    const spin    = { y: 0 };
+    const floatObj= { y: 0 };
+    gsap.to(spin,     { y: Math.PI*2, duration: 9, repeat: -1, ease: 'none' });
+    gsap.to(floatObj, { y: 0.18, duration: 2.6, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+
+    // Resize
+    function onResize() {
+      const pw = canvas.parentElement?.offsetWidth  || 480;
+      const ph = canvas.parentElement?.offsetHeight || 480;
+      renderer.setSize(pw, ph);
+      camera.aspect = pw / ph;
+      camera.updateProjectionMatrix();
+    }
+    window.addEventListener('resize', onResize);
+    onResize();
+
+    // Render loop
+    const clock = new THREE.Clock();
+    const shadowMat = shadowPlane.material;
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const t = clock.getElapsedTime();
+
+      currentRotX += (targetRotX - currentRotX) * 0.055;
+      currentRotY += (targetRotY - currentRotY) * 0.055;
+
+      dbGroup.rotation.y = spin.y + currentRotY;
+      dbGroup.rotation.x = Math.sin(t * 0.25) * 0.06 + currentRotX;
+      dbGroup.rotation.z = Math.sin(t * 0.18) * 0.025;
+      dbGroup.position.y = floatObj.y;
+
+      const pPos = pGeo.attributes.position.array;
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        pPos[i*3+1] += 0.0008;
+        if (pPos[i*3+1] > 4) pPos[i*3+1] = -4;
+      }
+      pGeo.attributes.position.needsUpdate = true;
+
+      keyLight.position.x = 4 + Math.sin(t * 0.3) * 0.8;
+      keyLight.position.z = 4 + Math.cos(t * 0.25) * 0.6;
+
+      const ss = 1 - floatObj.y * 0.3;
+      shadowPlane.scale.set(ss, ss, 1);
+      shadowMat.opacity = 0.55 - floatObj.y * 0.18;
+
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // Entrance
+    gsap.from(dbGroup.scale, { x: 0, y: 0, z: 0, duration: 1.4, ease: 'elastic.out(1,0.7)', delay: 0.6 });
+  }
+
+  tryInit();
+})();
+</script>
+
+</body>
+</html>
